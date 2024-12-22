@@ -8,7 +8,6 @@ use pingora::ErrorType;
 use pingora::lb::LoadBalancer;
 use pingora::prelude::{HttpPeer, ProxyHttp, RoundRobin, Session};
 use serde::Deserialize;
-use crate::constant::{DEFAULT_HOST, LTC_2081, POWER_STATION};
 
 pub struct MyProxy {
     lbs: HashMap<String, Arc<LoadBalancer<RoundRobin>>>,
@@ -112,7 +111,7 @@ impl ProxyHttp for MyProxy {
 
     async fn request_filter(
         &self,
-        session: &mut Session,
+        _session: &mut Session,
         _ctx: &mut Self::CTX,
     ) -> pingora::Result<bool> {
         Ok(false) // 允许继续处理

@@ -1,4 +1,3 @@
-mod constant;
 mod proxy;
 
 use pingora::prelude::*;
