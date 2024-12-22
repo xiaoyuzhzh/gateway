@@ -1,0 +1,7 @@
+routes:
+  "/path1":
+    forward_to: "localhost:8081"
+    replace_path: "/pp"
+  "/path2":
+    forward_to: "localhost:7081"
+    replace_path: ""

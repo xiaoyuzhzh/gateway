@@ -1,22 +1,8 @@
-### Building and running your application
+## 本地运行
+直接配置环境变量 CONFIG_PATH = 实际配置文件位置
+配置参考配置文件 config_demo.yaml
 
-When you're ready, start your application by running:
-`docker compose up --build`.
-
-Your application will be available at http://localhost:6188.
-
-### Deploying your application to the cloud
-
-First, build your image, e.g.: `docker build -t myapp .`.
-If your cloud uses a different CPU architecture than your development
-machine (e.g., you are on a Mac M1 and your cloud provider is amd64),
-you'll want to build the image for that platform, e.g.:
-`docker build --platform=linux/amd64 -t myapp .`.
-
-Then, push it to your registry, e.g. `docker push myregistry.com/myapp`.
-
-Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
-docs for more detail on building and pushing.
-
-### References
-* [Docker's Rust guide](https://docs.docker.com/language/rust/)
+## docker
+**打包镜像**：本地运行 docker build -t gateway .
+**运行镜像**：docker run --name gateway -v /path/to/config.yaml:/app/config/config.yaml -d 
+--network host gateway
