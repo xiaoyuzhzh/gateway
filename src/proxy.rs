@@ -91,10 +91,14 @@ impl ProxyHttp for MyProxy {
         if let Some((route, route_config)) = self.settings.routes.iter().find(|(key, _)| original_path.starts_with(&**key)) {
             println!("Value of str: '{}'", route);
             let new_path = original_path.replacen(route, &route_config.replace_path, 1); // 替换匹配的部分路径
+            // 获取原始的 query string
+            let original_query = original_uri.query().unwrap_or("");
+            // 构建新的 path 和 query string
+            let path_and_query = format!("{}?{}", new_path, original_query);
             let new_uri = Uri::builder()
                 .scheme(original_uri.scheme().unwrap_or(&http::uri::Scheme::HTTP).as_str())
                 .authority(route_config.forward_to.clone())
-                .path_and_query(new_path)
+                .path_and_query(path_and_query)
                 .build()
                 .unwrap();
 
